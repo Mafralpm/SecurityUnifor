@@ -1,6 +1,10 @@
 package com.example.labm4.securityunifor.Model;
 
-public class Employee {
+import android.os.Parcel;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
 
     private String nome;
     private String dataAcesso;

@@ -1,5 +1,7 @@
 package com.example.labm4.securityunifor.Activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
@@ -47,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         try {
             responseLogin = myRestEmployee.login(login.getText().toString(), password.getText().toString());
             Employee data = responseLogin.getData().get(0);
-            System.out.println(data.getNome());
+            Intent intent = new Intent(this, MainActivity_.class);
+            intent.putExtra("employee", data);
+            startActivity(intent);
         } catch (HttpClientErrorException e) {
             Log.d("Deu erro mermo", "Deu erro mermo");
         } catch (RestClientException e) {

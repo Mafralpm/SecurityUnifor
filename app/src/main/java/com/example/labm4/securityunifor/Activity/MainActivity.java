@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
+import com.example.labm4.securityunifor.Model.Employee;
 import com.example.labm4.securityunifor.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -15,15 +17,25 @@ import com.google.zxing.integration.android.IntentResult;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
+    @ViewById
+    TextView nome;
+
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 42;
 
     @AfterViews
     public void begin() {
+
+        Intent intent = getIntent();
+        Employee employee = (Employee) intent.getSerializableExtra("employee");
+
+        nome.setText(employee.getNome());
+
         permission();
     }
 

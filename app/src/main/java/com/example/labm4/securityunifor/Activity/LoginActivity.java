@@ -1,7 +1,10 @@
 package com.example.labm4.securityunifor.Activity;
 
+import android.Manifest;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
@@ -23,6 +26,8 @@ import org.springframework.web.client.RestClientException;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_INTERNET = 1;
+
     @RestService
     MyRestEmployee myRestEmployee;
 
@@ -36,6 +41,19 @@ public class LoginActivity extends AppCompatActivity {
     public void begin() {
         login.setText("730541854");
         password.setText("11111111");
+
+        permission();
+    }
+
+    private void permission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.INTERNET},
+                    MY_PERMISSIONS_REQUEST_INTERNET);
+
+        }
     }
 
     @Click

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.labm4.securityunifor.Model.Employee;
@@ -24,12 +25,16 @@ import org.androidannotations.annotations.ViewById;
 public class MainActivity extends AppCompatActivity {
 
     @ViewById
+    Toolbar toolbar;
+
+    @ViewById
     TextView name;
 
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 42;
 
     @AfterViews
     public void begin() {
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         Employee employee = (Employee) intent.getSerializableExtra("employee");
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         if (scanningResult != null) {
             String contents = intent.getStringExtra("SCAN_RESULT");
             String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-            Intent i = new Intent(this, Infos.class);
+            Intent i = new Intent(this, MainActivity_.class);
             i.putExtra("contents", contents);
             i.putExtra("format", format);
             startActivity(i);

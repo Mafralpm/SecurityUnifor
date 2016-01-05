@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.EditText;
 
@@ -33,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     MyRestEmployee myRestEmployee;
 
     @ViewById
+    Toolbar toolbar;
+
+    @ViewById
     EditText login;
 
     @ViewById
@@ -40,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @AfterViews
     public void begin() {
+        setSupportActionBar(toolbar);
+
         login.setText("730541854");
         password.setText("11111111");
 
@@ -59,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Click
     public void doLogin() {
-        System.out.print("Entrei");
         sendPost();
     }
 

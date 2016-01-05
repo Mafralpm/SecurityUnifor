@@ -20,6 +20,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Click
     public void doLogin() {
+        System.out.print("Entrei");
         sendPost();
     }
 

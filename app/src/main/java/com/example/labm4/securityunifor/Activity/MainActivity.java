@@ -24,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
 public class MainActivity extends AppCompatActivity {
 
     @ViewById
-    TextView nome;
+    TextView name;
 
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 42;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Employee employee = (Employee) intent.getSerializableExtra("employee");
 
-        nome.setText(employee.getNome());
+        name.setText(employee.getNome());
 
         permission();
     }
@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @Click
     public void scanner() {
         scanBarcode();
+    }
+
+    @Click
+    public void searchBoard() {
+        Intent intent = new Intent(this, SearchBoardActivity_.class);
+        startActivity(intent);
     }
 
     private void permission() {

@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
         if (scanningResult != null) {
-            String contents = intent.getStringExtra("SCAN_RESULT");
-            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-            Intent i = new Intent(this, MainActivity_.class);
-            i.putExtra("contents", contents);
-            i.putExtra("format", format);
-            startActivity(i);
+//            String contents = intent.getStringExtra("SCAN_RESULT");
+//            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+//            Intent i = new Intent(this, MainActivity_.class);
+//            i.putExtra("contents", contents);
+//            i.putExtra("format", format);
+//            startActivity(i);
         }
 
     }

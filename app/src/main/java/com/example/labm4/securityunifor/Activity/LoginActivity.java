@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     public void begin() {
         setSupportActionBar(toolbar);
 
-        login.setText("730541854");
+        login.setText("73096227");
         password.setText("11111111");
 
         permission();

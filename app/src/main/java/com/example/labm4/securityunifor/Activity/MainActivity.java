@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Click
     public void scanner() {
-        scanBarcode();
+        Intent i = new Intent(this, EmployeeActivity_.class);
+        startActivity(i);
+        //scanBarcode();
     }
 
     @Click
@@ -78,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
         if (scanningResult != null) {
-//            String contents = intent.getStringExtra("SCAN_RESULT");
+            Intent i = new Intent(this, EmployeeActivity_.class);
+            String contents = intent.getStringExtra("SCAN_RESULT");
+            i.putExtra("contents", contents);
+            startActivity(i);
 //            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-//            Intent i = new Intent(this, MainActivity_.class);
-//            i.putExtra("contents", contents);
 //            i.putExtra("format", format);
-//            startActivity(i);
+
         }
 
     }

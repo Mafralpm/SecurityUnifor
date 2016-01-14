@@ -5,7 +5,9 @@ import java.util.Date;
 
 public class User {
 
-    private String matricula;
+    private Integer estabelecimento;
+
+    private Integer matricula;
 
     private String dvMatricula;
 
@@ -27,24 +29,26 @@ public class User {
 
     private Integer nrCarteira;
 
+    private Integer nrViaValida;
+
     Collection<Infraction> infracoes;
 
     Collection<Vehicle> veiculos;
 
-    public String getMatricula() {
+    public Integer getEstabelecimento() {
+        return estabelecimento;
+    }
+
+    public void setEstabelecimento(Integer estabelecimento) {
+        this.estabelecimento = estabelecimento;
+    }
+
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
-    }
-
-    public String getDvMatricula() {
-        return dvMatricula;
-    }
-
-    public void setDvMatricula(String dvMatricula) {
-        this.dvMatricula = dvMatricula;
     }
 
     public String getNmUsuario() {
@@ -55,12 +59,12 @@ public class User {
         this.nmUsuario = nmUsuario;
     }
 
-    public String getDsTpUsuario() {
-        return dsTpUsuario;
+    public String getDvMatricula() {
+        return dvMatricula;
     }
 
-    public void setDsTpUsuario(String dsTpUsuario) {
-        this.dsTpUsuario = dsTpUsuario;
+    public void setDvMatricula(String dvMatricula) {
+        this.dvMatricula = dvMatricula;
     }
 
     public String getDsTpAluno() {
@@ -69,6 +73,14 @@ public class User {
 
     public void setDsTpAluno(String dsTpAluno) {
         this.dsTpAluno = dsTpAluno;
+    }
+
+    public String getDsTpUsuario() {
+        return dsTpUsuario;
+    }
+
+    public void setDsTpUsuario(String dsTpUsuario) {
+        this.dsTpUsuario = dsTpUsuario;
     }
 
     public String getNmCurso() {
@@ -119,6 +131,14 @@ public class User {
         this.nrCarteira = nrCarteira;
     }
 
+    public Integer getNrViaValida() {
+        return nrViaValida;
+    }
+
+    public void setNrViaValida(Integer nrViaValida) {
+        this.nrViaValida = nrViaValida;
+    }
+
     public Collection<Infraction> getInfracoes() {
         return infracoes;
     }
@@ -134,5 +154,4 @@ public class User {
     public void setVeiculos(Collection<Vehicle> veiculos) {
         this.veiculos = veiculos;
     }
-
 }

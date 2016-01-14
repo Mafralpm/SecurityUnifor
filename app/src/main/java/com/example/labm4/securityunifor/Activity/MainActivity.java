@@ -11,14 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.labm4.securityunifor.Model.Employee;
+import com.example.labm4.securityunifor.Model.ResponseUser;
+import com.example.labm4.securityunifor.Model.User;
 import com.example.labm4.securityunifor.R;
+import com.example.labm4.securityunifor.Rest.MyRestUser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
 
 
 @EActivity(R.layout.activity_main)
@@ -30,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     @ViewById
     TextView name;
 
+    @RestService
+    MyRestUser myRestUser;
+
+    Employee employee;
+
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 42;
 
     @AfterViews
@@ -37,24 +47,39 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        Employee employee = (Employee) intent.getSerializableExtra("employee");
+        employee = (Employee) intent.getSerializableExtra("employee");
 
         name.setText(employee.getNome());
 
         permission();
     }
 
-    @Click
-    public void scanner() {
-        Intent i = new Intent(this, EmployeeActivity_.class);
-        startActivity(i);
-        //scanBarcode();
+    @Background
+    public void getUsers() {
+        ResponseUser user = myRestUser.searchUsers(employee.getToken(), "0", "6000");
+        for (User i : user.getData()) {
+
+        }
     }
 
     @Click
+    @Background
+    public void scanner() {
+
+        ResponseUser response = myRestUser.searchUser("9321134", "002", employee.getToken(), "000");
+        User user = response.getData().get(0);
+        System.out.print(user.toString());
+
+    }
+
+    @Click
+    @Background
     public void searchBoard() {
-        Intent intent = new Intent(this, SearchBoardActivity_.class);
-        startActivity(intent);
+
+        ResponseUser response = myRestUser.searchUserBoard(employee.getToken(), "HXT1556");
+        User user = response.getData().get(0);
+        System.out.print(user.toString());
+
     }
 
     private void permission() {
@@ -80,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
         if (scanningResult != null) {
-            Intent i = new Intent(this, EmployeeActivity_.class);
             String contents = intent.getStringExtra("SCAN_RESULT");
-            i.putExtra("contents", contents);
-            startActivity(i);
 //            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+            Intent i = new Intent(this, EmployeeActivity_.class);
+            i.putExtra("contents", contents);
+            i.putExtra("token", employee.getToken());
 //            i.putExtra("format", format);
-
+            startActivity(i);
         }
 
     }
